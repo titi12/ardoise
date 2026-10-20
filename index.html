@@ -4,21 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ardoise – Relance automatique de tes devis</title>
-<meta name="description" content="Ardoise relance tes devis sans réponse à ta place, et te prévient dès qu'un client l'ouvre. 35 €/mois, remboursé sous 30 jours.">
+<meta name="description" content="Ardoise relance tes devis sans réponse à ta place, et te prévient dès qu'un client l'ouvre. Laisse ton email pour être prévenu à l'ouverture.">
 <meta property="og:title" content="Ardoise – Un devis non relancé est un devis perdu">
-<meta property="og:description" content="Relance automatique des devis sans réponse. Accès anticipé, remboursé sous 30 jours.">
+<meta property="og:description" content="Relance automatique des devis sans réponse. Laisse ton email pour être prévenu à l'ouverture.">
 <meta property="og:type" content="website">
 <style>
 :root{--ardoise:#1E2A30;--orange:#E8642C;--creme:#F6F3EC;--gris:#5b6770}
 *{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--creme);color:var(--ardoise);line-height:1.5;font-size:18px}
 main{max-width:640px;margin:0 auto;padding:24px 20px 120px}
 .tag{display:inline-block;background:var(--ardoise);color:var(--creme);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;margin-bottom:20px}
 h1{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:34px;line-height:1.1;margin-bottom:16px}
 h2{font-family:Georgia,serif;font-size:24px;margin:40px 0 12px}
 .lead{font-size:20px;margin-bottom:24px}
-.btn{display:block;text-align:center;background:var(--orange);color:#fff;font-weight:700;font-size:19px;padding:18px 20px;text-decoration:none;border:2px solid var(--ardoise);box-shadow:4px 4px 0 var(--ardoise)}
-.note{font-size:14px;color:var(--gris);margin-top:10px;text-align:center}
+#inscription{scroll-margin-top:16px}
+input[type=email]{width:100%;font-size:18px;font-family:inherit;padding:16px;border:2px solid var(--ardoise);background:#fff;color:var(--ardoise);margin-bottom:12px;border-radius:0}
+.btn{display:block;width:100%;text-align:center;background:var(--orange);color:#fff;font-weight:700;font-size:19px;font-family:inherit;padding:18px 20px;text-decoration:none;border:2px solid var(--ardoise);box-shadow:4px 4px 0 var(--ardoise);cursor:pointer;border-radius:0}
+.note{font-size:14px;color:var(--gris);margin-top:10px}
+.note a{color:var(--gris)}
+.ok{font-weight:700;font-size:20px;border:2px solid var(--ardoise);padding:16px;background:#fff}
+.erreur{color:#b3261e;font-size:15px;margin-top:10px}
 .douleur{background:var(--ardoise);color:var(--creme);padding:20px;margin:32px 0}
 .douleur strong{color:var(--orange)}
 ul{list-style:none;padding:0}
@@ -35,11 +41,20 @@ footer a{color:var(--gris)}
 </head>
 <body>
 <main>
-<span class="tag">Accès anticipé</span>
+<span class="tag">Bientôt ouvert</span>
 <h1>Un devis non relancé est un devis perdu.</h1>
 <p class="lead">Ardoise relance tes devis sans réponse à ta place, poliment, et te prévient dès qu'un client l'ouvre.</p>
-<a class="btn" href="https://buy.stripe.com/test_00w8wQ0k1ab18gk33j9IQ00">Réserver mon accès – 35 €/mois</a>
-<p class="note">Remboursé sous 30 jours. Résiliable à tout moment.</p>
+
+<div id="inscription">
+<form id="f" action="https://formspree.io/f/xdeargow" method="POST">
+<input type="email" name="email" placeholder="ton@email.fr" autocomplete="email" required aria-label="Ton adresse email">
+<input type="hidden" name="_subject" value="Nouvelle inscription Ardoise">
+<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+<button class="btn" type="submit">Me prévenir à l'ouverture</button>
+<p class="note">Gratuit, sans engagement. En t'inscrivant, tu acceptes d'être prévenu par email à l'ouverture. <a href="/confidentialite.html">Confidentialité</a></p>
+<p class="erreur" id="err" hidden>L'envoi a échoué. Réessaie, ou écris à ardoise.saas@hotmail.com.</p>
+</form>
+</div>
 
 <div class="douleur">
 <p>Exemple : 5 devis à 180 € envoyés cette semaine, aucun relancé. <strong>900 € qui dorment</strong> dans la boîte mail de tes clients. Relancer, c'est inconfortable, alors on remet à demain, et le client va ailleurs.</p>
@@ -52,21 +67,32 @@ footer a{color:var(--gris)}
 <li><b>Un tableau clair</b>Envoyés, ouverts, signés, perdus, avec le montant en jeu.</li>
 </ul>
 
-<h2>Prix</h2>
+<h2>Prix prévu</h2>
 <p class="prix">35 €<span style="font-size:18px;font-weight:400"> / mois</span></p>
-<p>Soit environ 1,15 € par jour. Un seul devis récupéré rembourse ton mois.</p>
+<p>Soit environ 1,15 € par jour. Un seul devis récupéré rembourse ton mois. Sans engagement, résiliable à tout moment.</p>
 
 <div class="garantie">
 <b>Satisfait ou remboursé, 30 jours.</b>
-<p>Si Ardoise ne te convient pas, écris à <a href="mailto:ardoise.saas@hotmail.com">ardoise.saas@hotmail.com</a> dans les 30 jours. Remboursement sous 5 jours ouvrés, sans justification.</p>
+<p>À l'ouverture, si Ardoise ne te convient pas, écris à <a href="mailto:ardoise.saas@hotmail.com">ardoise.saas@hotmail.com</a> dans les 30 jours suivant ton premier paiement. Remboursement sous 5 jours ouvrés, sans justification.</p>
 </div>
 
-<p style="font-size:16px"><b>Accès anticipé :</b> l'outil est en cours de finalisation. Tu le reçois par email dès qu'il est prêt, et tu paies tout de suite le tarif de lancement.</p>
+<p style="font-size:16px"><b>Tu ne paies rien aujourd'hui.</b> L'outil est en cours de finalisation : laisse ton email, tu es prévenu dès qu'il ouvre.</p>
 
 <footer>
 <a href="/mentions.html">Mentions légales</a> · <a href="/cgv.html">CGV</a> · <a href="/confidentialite.html">Confidentialité</a>
 </footer>
 </main>
-<div class="sticky"><a class="btn" href="https://buy.stripe.com/test_00w8wQ0k1ab18gk33j9IQ00">Réserver mon accès – 35 €/mois</a></div>
+<div class="sticky"><a class="btn" href="#inscription">Me prévenir à l'ouverture</a></div>
+<script>
+document.getElementById('f').addEventListener('submit',async function(e){
+e.preventDefault();
+var f=e.target;
+try{
+var r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
+if(!r.ok){throw new Error('x')}
+f.innerHTML='<p class="ok">Merci ! Tu seras prévenu dès l\u2019ouverture.</p>';
+}catch(x){document.getElementById('err').hidden=false}
+});
+</script>
 </body>
 </html>
